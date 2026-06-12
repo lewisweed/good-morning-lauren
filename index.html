@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>good morning, lauren ♥</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐸</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@600;700&family=VT323&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14532d;
+  --cream:#f4ffe9;
+  --pink:#e0507f;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'VT323',monospace;
+  color:var(--ink);
+  overflow:hidden;
+  background:linear-gradient(180deg,
+    #b8e6c4 0%,   #b8e6c4 18%,
+    #8fd0a3 18%,  #8fd0a3 38%,
+    #5fb380 38%,  #5fb380 60%,
+    #3c8f63 60%,  #3c8f63 80%,
+    #27634a 80%,  #27634a 100%);
+}
+/* subtle CRT scanlines */
+body::after{
+  content:"";position:fixed;inset:0;z-index:100;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(16,50,35,.07) 0 2px,transparent 2px 4px);
+}
+/* ---------- pixel bubbles ---------- */
+.bubble{
+  position:absolute;bottom:-24px;left:var(--x);width:var(--s);height:var(--s);
+  background:rgba(255,255,255,.6);z-index:1;opacity:0;
+  animation:rise var(--d) steps(30) infinite;animation-delay:var(--delay);
+}
+@keyframes rise{
+  0%{transform:translate(0,0);opacity:0}
+  8%{opacity:.8}
+  90%{opacity:.5}
+  100%{transform:translate(14px,-110vh);opacity:0}
+}
+/* ---------- center message ---------- */
+main{
+  position:relative;z-index:2;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:24px;gap:20px;
+}
+h1{
+  font-family:'Pixelify Sans',monospace;font-weight:700;line-height:1.08;
+  font-size:clamp(3rem,8vw,6rem);
+  text-shadow:4px 4px 0 rgba(20,83,45,.18);
+  animation:risein .7s steps(5) .3s backwards;
+}
+.name{color:var(--pink)}
+.heart canvas{
+  width:.85em;height:auto;display:inline-block;
+  image-rendering:pixelated;vertical-align:-4%;
+}
+.sub{
+  font-size:clamp(1.3rem,2.4vw,1.8rem);max-width:44ch;line-height:1.3;
+  color:var(--cream);
+  animation:risein .7s steps(5) .5s backwards;
+}
+@keyframes risein{from{opacity:0;transform:translateY(16px)}}
+footer{
+  position:absolute;bottom:18px;width:100%;text-align:center;z-index:2;
+  font-size:1.2rem;color:rgba(244,255,233,.85);
+  animation:risein .7s steps(5) .8s backwards;
+}
+/* ---------- pixel critters ---------- */
+.critter{
+  position:absolute;z-index:3;
+  animation:pop .5s steps(3) backwards;animation-delay:var(--pop);
+  filter:drop-shadow(5px 5px 0 rgba(20,83,45,.22));
+}
+.critter canvas{width:100%;height:auto;display:block;image-rendering:pixelated}
+.bob{animation:bob var(--bob) steps(1,end) infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes pop{from{transform:scale(0)}}
+.axo  {top:13%;left:6%;width:clamp(140px,15vw,210px);--bob:2.6s;--pop:.2s}
+.squid{top:15%;right:8%;width:clamp(100px,11vw,160px);--bob:2.2s;--pop:.4s}
+.octo {bottom:11%;left:10%;width:clamp(130px,14vw,200px);--bob:3s;--pop:.6s}
+.frog {bottom:12%;right:9%;width:clamp(130px,14vw,200px);--bob:2.4s;--pop:.8s}
+@media (max-width:720px){
+  .axo{top:5%;left:2%}.squid{top:7%;right:2%}
+  .octo{bottom:6%;left:2%}.frog{bottom:7%;right:2%}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<i class="bubble" style="--x:7%;--s:10px;--d:11s;--delay:0s"></i>
+<i class="bubble" style="--x:19%;--s:7px;--d:14s;--delay:4s"></i>
+<i class="bubble" style="--x:33%;--s:12px;--d:12s;--delay:7s"></i>
+<i class="bubble" style="--x:47%;--s:8px;--d:15s;--delay:2s"></i>
+<i class="bubble" style="--x:59%;--s:11px;--d:11.5s;--delay:9s"></i>
+<i class="bubble" style="--x:72%;--s:7px;--d:13.5s;--delay:5s"></i>
+<i class="bubble" style="--x:84%;--s:10px;--d:12.5s;--delay:1s"></i>
+<i class="bubble" style="--x:93%;--s:8px;--d:14.5s;--delay:6.5s"></i>
+
+<main>
+  <h1>good morning,<br><span class="name">lauren</span> <span class="heart"><canvas id="heartpix"></canvas></span></h1>
+  <p class="sub">i shall be here soon :)</p>
+</main>
+
+<div class="critter axo"   data-kind="axo"><div class="bob"><canvas></canvas></div></div>
+<div class="critter squid" data-kind="squid"><div class="bob"><canvas></canvas></div></div>
+<div class="critter octo"  data-kind="octo"><div class="bob"><canvas></canvas></div></div>
+<div class="critter frog"  data-kind="frog"><div class="bob"><canvas></canvas></div></div>
+
+<footer>-lewis</footer>
+
+<script>
+/* ---------- pixel sprites ---------- */
+const PALETTE = {
+  P:'#ffb3c6', D:'#ff8fab',             // axolotl body, gills
+  G:'#62c655', H:'#3f9e3f', L:'#d9f2b4', Y:'#35b25c', // frog + lily pad
+  T:'#58c5b0',                          // squid
+  M:'#8fd6a4',                          // octopus
+  E:'#2e3d33', B:'#ff9eb5',             // eyes/mouth, blush
+  R:'#e0507f', S:'#ff9eb5'              // heart + highlight
+};
+const SPRITES = {
+  axo: [
+    '.....PPPPPPP.....',
+    '..D.PPPPPPPPP.D..',
+    '.DD.PPPPPPPPP.DD.',
+    'DD..PPPPPPPPP..DD',
+    '.DD.PPPPPPPPP.DD.',
+    '..D.PPPPPPPPP.D..',
+    '....PEPPPPPEP....',
+    '....PPPPPPPPP....',
+    '....PBPEEEPBP....',
+    '....PPPPPPPPP....',
+    '.....PPPPPPP.....',
+    '....PP.....PP....'
+  ],
+  frog: [
+    '..GGG......GGG..',
+    '..GEG......GEG..',
+    '.GGGGGGGGGGGGGG.',
+    '.GGGGGGGGGGGGGG.',
+    '.GBGGGGGGGGGGBG.',
+    '.GGGGEEEEEEGGGG.',
+    '.GGGLLLLLLLLGGG.',
+    '.GGGLLLLLLLLGGG.',
+    '..GGLLLLLLLLGG..',
+    '..HH........HH..',
+    'YYYYYYYYYYYYYYYY',
+    '.YYYYYYYYYYYYYY.'
+  ],
+  squid: [
+    '......T......',
+    '.....TTT.....',
+    '....TTTTT....',
+    '...TTTTTTT...',
+    '...TTTTTTT...',
+    '..TTTTTTTTT..',
+    '..TTETTTETT..',
+    '..TBTEEETBT..',
+    '..TTTTTTTTT..',
+    '..T.T.T.T.T..',
+    '..T.T.T.T.T..',
+    '.T..T.T.T..T.'
+  ],
+  octo: [
+    '....MMMMMMM....',
+    '..MMMMMMMMMMM..',
+    '.MMMMMMMMMMMMM.',
+    '.MMMMMMMMMMMMM.',
+    '.MMMEMMMMMEMMM.',
+    '.MMBMMEEEMMBMM.',
+    '.MMMMMMMMMMMMM.',
+    '..MMMMMMMMMMM..',
+    '.M.M.M.M.M.M.M.',
+    '.M.M.M.M.M.M.M.',
+    '.M.M.M.M.M.M.M.'
+  ],
+  heart: [
+    '.RR.RR.',
+    'RSRRRRR',
+    'RRRRRRR',
+    '.RRRRR.',
+    '..RRR..',
+    '...R...'
+  ]
+};
+function drawSprite(canvas, map){
+  canvas.width = map[0].length;
+  canvas.height = map.length;
+  const ctx = canvas.getContext('2d');
+  map.forEach((row, y) => [...row].forEach((ch, x) => {
+    if (PALETTE[ch]) { ctx.fillStyle = PALETTE[ch]; ctx.fillRect(x, y, 1, 1); }
+  }));
+}
+document.querySelectorAll('.critter').forEach(c => drawSprite(c.querySelector('canvas'), SPRITES[c.dataset.kind]));
+drawSprite(document.getElementById('heartpix'), SPRITES.heart);
+
+</script>
+</body>
+</html>
